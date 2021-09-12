@@ -24,12 +24,13 @@
          $res=$obj->our_course_fetch();
          while($row=$res->fetch(PDO::FETCH_ASSOC)){
          ?>
-         <div class="col-sm-6 heading-group " >
-            <div class="imp-note" style="height: auto;background: #f9f9f9;border: 1px solid #dedfe0;">
-            <h1 style="font-size:20px;"><?php echo $row['course_name']; ?></h1>
-            <p style="font-size: 16px;color: #2c4754;">Course Feature</p>
-            <?php echo $row['feature']; ?>
-        </div>
+         <div class="col-sm-3 heading-group " >
+            <div class="imp-note" style="height: auto;background: #f9f9f9;border: 1px solid #dedfe0;text-align:center;">
+               <h1 style="font-size:15px;"><?php echo $row['course_name']; ?></h1>
+               <p style="font-size: 16px;color: #2c4754;">What you'll learn</p>
+               <p style="font-size: 16px;color: #2c4754;"><?php echo $row['duration'];?> | <?php echo $row['fee'];?></button></p>
+               <?php echo $row['feature']; ?>
+           </div>
          </div>
          
          <!-- <div class="col-sm-5 heading-group imp-note">

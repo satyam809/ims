@@ -27,7 +27,8 @@
                            <table id="example1" class="table table-hover ">
                               <thead>
                                  <th>Course Title</th>
-                                 <th>type</th>
+                                 <th>Fee</th>
+                                 <th>Duration</th>
                                  <th>Insert Date</th>
                                  <th>Modify Date</th>
                                  <th>Action</th>
@@ -41,7 +42,8 @@
                                       ?>
                                  <tr>
                                     <td><?php echo $row['course_name']; ?></td>
-                                    <td><?php echo $row['type'];?></td>
+                                    <td><?php echo $row['fee'];?></td>
+                                    <td><?php echo $row['duration'];?></td>
                                     <td><?php echo $row['insert_date'];?></td>
                                     <td><?php echo $row['modify_date'];?></td>
                                     <td>

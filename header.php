@@ -63,8 +63,8 @@
                     <div class="col-xs-6 col-sm-9">
                         <div class="contact clearfix">
                             <ul class="hidden-xs">
-                                <li> <span style="color:#006b1c;font-weight:700;">Email</span> <a href="mailto:conept@conceptasbclasses.co.in" style="color:#353434!important;">Support@conceptasbclasses.co.in</a> </li>
-                                <li> <span style="font-size: 18px;color: #4f4a4a;;font-family: 'texgyreadventorbold';">9774274741</span> 9863052594 </li>
+                                <li> <span style="color:#006b1c;font-weight:700;">Email</span> <a href="mailto:satyamshivam570@gmail.com" style="color:#353434!important;">satyamshivam570@gmail.com</a> </li>
+                                <li> <span style="font-size: 18px;color: #4f4a4a;;font-family: 'texgyreadventorbold';">8375041361</span>  </li>
                             </ul>
                         </div>
                     </div>
@@ -81,18 +81,12 @@
                         <ul class="nav navbar-nav">
                             <li> <a href="index.php">Home</a></li>
                             <li> <a href="about.php">About Us</a></li>
-                            <li class="dropdown"> <a data-toggle="dropdown" href="#">Courses <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="our_courses.php">Our Courses</a></li>
-                                    <li><a href="online_courses.php">Online Courses</a></li>
-                                    <li><a href="offline_courses.php">Offline Courses</a></li>
-                                    
-                                </ul>
-                            </li>
+                            <li><a href="our_courses.php">Our Courses</a></li>
+                            
                             <li> <a href="download.php">Downloads</a></li>
                             <li> <a href="gallery.php">Gallery</a></li>
                             
-                            <li> <a href="https://conceptasb.tcyonline.com/" target="_blank">Take a test</a></li>
+                            
                             <li> <a href="contact.php">Contact Us</a></li>
                         </ul>
                     </div>

@@ -8,13 +8,15 @@
    <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <title>Conceptasbclasses</title>
-      <link rel="shortcut icon" type="image/x-icon" href="dist/img/favicon.ico">
+      <title>IMS</title>
+      <link rel="shortcut icon" type="image/x-icon" href="dist/img/logo.jpg">
       <!-- Tell the browser to be responsive to screen width -->
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- Font Awesome -->
       <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
       <!-- Ionicons -->
+      <!-- jQuery -->
+      <script src="plugins/jquery/jquery.min.js"></script>
       <style type="text/css">
          body{
          font-family: none !important;
@@ -69,7 +71,7 @@
             <span style="position: absolute;
                top: 50%;
                left: 50%;
-               transform: translateX(-50%) translateY(-50%)";>Welcome to Concept ASB Classes Dashboard</span>
+               transform: translateX(-50%) translateY(-50%)";>Welcome to Tech Classes Dashboard</span>
          </nav>
          <!-- /.navbar -->
          <!-- Main Sidebar Container -->

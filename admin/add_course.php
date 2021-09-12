@@ -4,10 +4,11 @@
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   $course_name=$_POST['course_name'];//echo $course_name;
   
-  $type=$_POST['type'];//echo $type;
+  $fee=$_POST['fee'];//echo $type;
+  $duration=$_POST['duration'];
   $feature=$_POST['feature'];
   
-  $obj->course_insert($course_name,$type,$feature);
+  $obj->course_insert($course_name,$fee,$duration,$feature);
 }
 ?>
 
@@ -28,20 +29,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <section class="content">
               <form action="" method="post" enctype="multipart/form-data">
                <div class="row">
-                  <div class="col-md-8">
+                  <div class="col-md-6">
                      <div class="form-group">
-                        <label>Course title(only for our courses)</label>
+                        <label>Course title</label>
                         <input type="text" class="form-control" name="course_name" value="" placeholder="Enter Course Name">
                      </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="form-group">
-                        <label>Select Course Type</label>
-                        <select class="form-control" name="type" required>
-                          <option>Select Course Type</option>
-                          <option>Online</option>
-                          <option>Offline</option>
-                          <option>Our Courses</option>
+                        <label>Course Fee</label>
+                        <input type="text" class="form-control" name="fee" value="" placeholder="Enter Course Fee">
+                        
+                      </div>
+                     
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Course Duration</label>
+                        <input type="text" class="form-control" name="duration" value="" placeholder="Enter Course Duration">
                         </select>
                       </div>
                      
@@ -56,7 +61,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <div class="card-body pad">
                            <div class="mb-3">
                               <textarea class="textarea" placeholder="Enter Course Description" name="feature" 
-                               style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required></textarea>
+                               style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                            </div>
                         </div>
                      </div>

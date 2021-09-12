@@ -102,24 +102,24 @@
 
         <!-- Start Google Map -->
         <section class="google-map">
-            <div id="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14597.687328226002!2d91.25608543038913!3d23.839150152729513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3753f43b7cce4fbb%3A0x212f0a7ff5e62755!2sConcept%20ASB%20Classes%20%26%20Animesh%20Sir&#39;s%20Biology%20Classes!5e0!3m2!1sen!2sin!4v1587784044861!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></div>
+            <div id="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.83808241413!2d77.03831071432468!3d28.634614540739154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d0516b09b5ccf%3A0xef0f46e431382a47!2sSai%20Enclave%2C%20Block%20N%203%2C%20Mohan%20Garden%2C%20Razapur%20Khurd%2C%20Delhi%2C%20110059!5e0!3m2!1sen!2sin!4v1631372471312!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
             <div class="container">
                 <div class="contact-detail">
                     <div class="address">
                         <div class="inner">
-                            <h3>Concept ASB Classes</h3>
-                            <p>Sankar Chowmuhani Ramnagar, Rd Number 4, Agartala, Tripura 799002</p>
+                            <h3>Tech Classes</h3>
+                            <p>Sai enclave, Mohan garden, New Delhi - 110059</p>
                         </div>
                         <div class="inner">
-                            <h3>9863052594</h3>
+                            <h3>8375041361</h3>
                         </div>
-                        <div class="inner"> <a href="mailto:conceptasbclasses@gmail.com">conceptasbclasses@gmail.com</a> </div>
+                        <div class="inner"> <a href="mailto:satyamshivam570@gmail.com@gmail.com">satyamshivam570@gmail.com@gmail.com</a> </div>
                     </div>
                     <div class="contact-bottom">
                         <ul class="follow-us clearfix">
-                            <li><a href="https://www.facebook.com/Dr.AnimeshDey/" target="_blank"><i class="fa fa-facebook" aria-hidden="true" ></i></a></li>
-                            <li><a href="https://www.instagram.com/Animesh.dey.7528/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                            <li><a href="https://g.page/conceptasbbiology?share" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fa fa-facebook" aria-hidden="true" ></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
                         </ul>
                     </div>
                 </div>

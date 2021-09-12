@@ -4,10 +4,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   $id=$_GET['id'];
   $course_name=$_POST['course_name'];//echo $course_name;
   
-  $type=$_POST['type'];//echo $type;
+  $fee=$_POST['fee'];//echo $fee;die;
+  $duration=$_POST['duration'];
   $feature=$_POST['feature'];
   
-  $obj->course_update($id,$course_name,$type,$feature);
+  $obj->course_update($id,$course_name,$fee,$duration,$feature);
 }
 if(isset($_GET['id'])){
   $id=$_GET['id'];
@@ -31,23 +32,30 @@ if(isset($_GET['id'])){
             <section class="content">
               <form action="" method="post" enctype="multipart/form-data">
                <div class="row">
-                  <div class="col-md-8">
+                  <div class="col-md-6">
                      <div class="form-group">
-                        <label>Course title(only for our courses)</label>
+                        <label>Course title</label>
                         <input type="text" class="form-control" name="course_name" value="<?php echo $row['course_name'];?>" placeholder="Enter Course Name">
                      </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="form-group">
-                        <label>Select Course Type</label>
-                        <select class="form-control" name="type">
+                        <label>Course Fee</label>
+                        <input type="text" class="form-control" name="fee" value="<?php echo $row['fee'];?>" placeholder="Enter Course Fee">
+                        <!-- <select class="form-control" name="type">
                           <option>Select Course Type</option>
-                          <option <?php if($row['type']=="Online") echo 'selected="selected"'; ?>>Online</option>
-                          <option <?php if($row['type']=="Offline") echo 'selected="selected"'; ?> >Offline</option>
-                          <option <?php if($row['type']=="Our Courses") echo 'selected="selected"'; ?> >Our Courses</option>
-                        </select>
+                          <option <?php //if($row['type']=="Online") echo 'selected="selected"'; ?>>Online</option>
+                          <option <?php //if($row['type']=="Offline") echo 'selected="selected"'; ?> >Offline</option>
+                          <option <?php //if($row['type']=="Our Courses") echo 'selected="selected"'; ?> >Our Courses</option>
+                        </select> -->
                       </div>
                      
+                  </div>
+                  <div class="col-md-3">
+                     <div class="form-group">
+                        <label>Course duration</label>
+                        <input type="text" class="form-control" name="duration" value="<?php echo $row['duration'];?>" placeholder="Enter Course Duration">
+                     </div>
                   </div>
                </div>
                

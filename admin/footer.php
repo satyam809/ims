@@ -1,5 +1,5 @@
 <footer class="main-footer" style="text-align: center;">
-            <p style="color: black;"> Design By-<a href="https://tiqto.com/" target="_blank">TiQtO India an Innovaxy Techlabs India Pvt Ltd.</a>.All rights
+            <p style="color: black;"> Design By-<a href="https://tiqto.com/" target="_blank">Satyam Shivam</a>.All rights
                reserved.
             </p>
          </footer>
@@ -10,8 +10,7 @@
          <!-- /.control-sidebar -->
       </div>
       <!-- ./wrapper -->
-      <!-- jQuery -->
-      <script src="plugins/jquery/jquery.min.js"></script>
+      
       <!-- jQuery UI 1.11.4 -->
       <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
       <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
