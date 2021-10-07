@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+<?php include 'include/header.php'; ?>
 
 
 <!-- Content Wrapper. Contains page content -->
@@ -39,7 +39,7 @@
    // fetch gallery
    function loadGalleryImages(page) {
       $.ajax({
-         url: 'ajax/galleryImagesFetch.php',
+         url: 'api/gallery/galleryImagesFetch.php',
          dataType: 'json',
          success: function(data) {
             //console.log(data);
@@ -63,12 +63,13 @@
    }
    // delete gallery
    $(document).on("click", "#btn_delete", function(e) {
+      // console.log("test");
       e.preventDefault();
       if (confirm("Do you really want to delete this")) {
          var empid = $(this).data("eid");
 
          $.ajax({
-            url: "ajax/galleryImageDelete.php",
+            url: "api/gallery/galleryImageDelete.php",
             type: "POST",
             dataType: "json",
             data: {
@@ -93,7 +94,7 @@
       // console.log($('#submit_form').serialize());
       //$('#response').html($('#submit_form').serialize());
       $.ajax({
-         url: "ajax/galleryImageInsert.php",
+         url: "api/gallery/galleryImageInsert.php",
          method: "POST",
          dataType: "JSON",
          data: new FormData(this),
@@ -104,7 +105,7 @@
             console.log(data);
             //console.log(data.status);
             if (data.status == true) {
-                $('#submit_form_gallery').trigger('reset');
+               $('#submit_form_gallery').trigger('reset');
                // $(".preview_img").attr("src", "");
                // $(".show_preview").hide();
                // $("#alert").show();
@@ -119,4 +120,4 @@
    });
    loadGalleryImages();
 </script>
-<?php include 'footer.php'; ?>
+<?php include 'include/footer.php'; ?>

@@ -1,16 +1,58 @@
-<?php include 'header.php'; ?>
+<?php include 'include/header.php'; ?>
 <!--Content Wrapper.Contains page content -->
 <div class="content-wrapper">
-   <!-- Content Header (Page header) -->
+   <!-- Content Header Page header -->
    <section class="content-header">
       <div class="container-fluid">
          <div class="row">
             <!-- <div class="col-sm-6">
                   <h1>DataTables</h1>
                </div> -->
+            <!-- Add New Model -->
             <div class="col-md-12 center_btn">
                <a href="#addnew" type="button" data-toggle="modal" class="btn btn-default" style="width: max-content;"> Add New</a>
 
+            </div>
+            <div id="DownloadAlertMessage"></div>
+            <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="modal-header" style="border: none;">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                     </div>
+                     <div class="modal-body">
+                        <div class="container-fluid">
+                           <form id="addDownload">
+                              <div class="row">
+                                 <div class="col-lg-5">
+                                    <label>File Name:</label>
+                                 </div>
+                                 <div class="col-lg-7">
+                                    <input type="text" class="form-control" name="file_name" required>
+                                 </div>
+                              </div>
+                              <br>
+
+                              <div class="row">
+                                 <div class="col-lg-5">
+                                    <label>Upload File:</label>
+                                 </div>
+                                 <div class="col-lg-7">
+                                    <input type="file" placeholder="Upload File" name="file" required>
+                                    <!-- <input type="text" class="form-control" name="lastname"> -->
+                                 </div>
+                              </div>
+
+                        </div>
+                     </div>
+                     <div class="modal-footer" style="border: none;">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <input type="submit" class="btn btn-default" value="save">
+                        </form>
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
       </div><!-- /.container-fluid -->
@@ -35,47 +77,7 @@
                   </tbody>
 
                </table>
-               <!-- Add New -->
-               <div class="modal fade" id="addnew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                     <div class="modal-content">
-                        <div class="modal-header" style="border: none;">
-                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
-                        </div>
-                        <div class="modal-body">
-                           <div class="container-fluid">
-                              <form method="POST" action="add_download.php" enctype="multipart/form-data">
-                                 <div class="row">
-                                    <div class="col-lg-5">
-                                       <label>File Name:</label>
-                                    </div>
-                                    <div class="col-lg-7">
-                                       <input type="text" class="form-control" name="file_name" required>
-                                    </div>
-                                 </div>
-                                 <br>
-
-                                 <div class="row">
-                                    <div class="col-lg-5">
-                                       <label>Upload File:</label>
-                                    </div>
-                                    <div class="col-lg-7">
-                                       <input type="file" placeholder="Upload File" name="file" required>
-                                       <!-- <input type="text" class="form-control" name="lastname"> -->
-                                    </div>
-                                 </div>
-
-                           </div>
-                        </div>
-                        <div class="modal-footer" style="border: none;">
-                           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                           <button type="submit" class="btn btn-default"></span> Save</a>
-                              </form>
-                        </div>
-                     </div>
-                  </div>
-               </div>
                <!-- Edit Model -->
                <div class="modal fade" id="editModal" role="dialog">
                   <div class="modal-dialog">
@@ -85,9 +87,7 @@
                            <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                         </div><br>
-                        <div id="edit_download_message_box" style="text-align: center;display: none;">
-                           <p id="edit_download_message_show"></p>
-                        </div>
+
                         <form id="updateDownload">
 
                            <div class="modal-body">
@@ -139,7 +139,7 @@
    // fetch downloads
    function loadDownloads() {
       $.ajax({
-         url: 'ajax/downloadsFetch.php',
+         url: 'api/download/downloadsFetch.php',
          dataType: 'json',
          success: function(data) {
             //console.log(data);
@@ -149,13 +149,13 @@
                var i = 1;
                $.each(data, function(key, value) {
                   $("#downloads_fetch").append(`
-                           <tr>
-                              <td>${value.file_name}</td>
-                              <td>${value.file}</td>
-                              <td><a href="" data-toggle="modal" data-eid="${value.download_id}" data-target="#editModal" id='btn_edit' class="btn btn-default">Edit</a>
-                              
-                              <a href="" class="btn btn-default" onclick="return confirm('sure to delete !'); ">Delete</a></td>
-                           </tr>`);
+                     <tr>
+                        <td>${value.file_name}</td>
+                        <td>${value.file}</td>
+                        <td><a href="" data-toggle="modal" data-eid="${value.download_id}" data-target="#editModal" id='btn_edit' class="btn btn-default">Edit</a>
+                        
+                        <a href="" class="btn btn-default" id="btn_delete" data-eid="${value.download_id}">Delete</a></td>
+                     </tr>`);
                });
                i++;
             }
@@ -167,7 +167,7 @@
       var empid = $(this).data("eid");
 
       $.ajax({
-         url: "ajax/downloadSingle.php",
+         url: "api/download/downloadSingle.php",
          type: "POST",
          data: {
             id: empid
@@ -190,7 +190,7 @@
       // console.log($('#updateDownload').serialize());
       //$('#response').html($('#updateDownload').serialize());
       $.ajax({
-         url: "ajax/downloadUpdate.php",
+         url: "api/download/downloadUpdate.php",
          method: "POST",
          dataType: "JSON",
          data: new FormData(this),
@@ -201,17 +201,75 @@
             console.log(data);
             //console.log(data.status);
             if (data.status == true) {
-               $("#edit_download_message_box").show();
-               $("#edit_download_message_show").html(data.message);
                $('#downloads_fetch').html('');
                loadDownloads();
+               $('#editModal').modal('hide');
+               alert(data.message);
             } else if (data.status == false) {
                console.log(data.message);
+
             }
          }
       });
 
    });
+   // insert download
+   $('#addDownload').on('submit', function(e) {
+      e.preventDefault();
+
+      alert($('#addDownload').serialize());
+      // console.log($('#addDownload').serialize());
+      //$('#response').html($('#addDownload').serialize());
+      $.ajax({
+         url: "api/download/downloadAdd.php",
+         method: "POST",
+         dataType: "JSON",
+         data: new FormData(this),
+         contentType: false,
+         //cache:false,  
+         processData: false,
+         success: function(data) {
+            // console.log(data);
+            //console.log(data.status);
+            if (data.status == true) {
+               $('#addDownload').trigger('reset');
+               $('#downloads_fetch').html('');
+               loadDownloads();
+               $('#addnew').modal('hide');
+               alert(data.message);
+
+            } else if (data.status == false) {
+               console.log(data.message);
+
+            }
+         }
+      });
+
+   });
+   // delete
+   $(document).on("click", "#btn_delete", function(e) {
+      e.preventDefault();
+      if (confirm("Do you really want to delete this")) {
+         var delid = $(this).data("eid");
+         //alert(empid);
+         $.ajax({
+            url: "api/download/deleteDownload.php",
+            type: "POST",
+            dataType: "json",
+            data: {
+               id: delid
+            },
+            success: function(data) {
+               console.log(data);
+               if (data.status == true) {
+                  $('#downloads_fetch').html('');
+                  loadDownloads();
+                  alert(data.message);
+               }
+            }
+         });
+      }
+   });
    loadDownloads();
 </script>
-<?php include 'footer.php'; ?>
+<?php include 'include/footer.php'; ?>

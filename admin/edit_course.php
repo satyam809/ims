@@ -1,89 +1,142 @@
-<?php include 'header.php';?>
-<?php
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-  $id=$_GET['id'];
-  $course_name=$_POST['course_name'];//echo $course_name;
-  
-  $fee=$_POST['fee'];//echo $fee;die;
-  $duration=$_POST['duration'];
-  $feature=$_POST['feature'];
-  
-  $obj->course_update($id,$course_name,$fee,$duration,$feature);
-}
-if(isset($_GET['id'])){
-  $id=$_GET['id'];
-  $row=$obj->course_detail($id);
-}
+<?php include 'include/header.php'; ?>
 
-?>
-         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-               <div class="container-fluid">
-                  <div class="row mb-2">
-                     <div class="col-sm-6">
-                        <a href="add_course.php" type="button" class="btn btn-default">Add Course</a>
-                     </div>
-                  </div>
+
+<div class="content-wrapper">
+   <!-- Content Header (Page header) -->
+   <section class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <a href="add_course.php" type="button" class="btn btn-default">Add Course</a>
+            </div>
+         </div>
+      </div>
+      <!-- /.container-fluid -->
+   </section>
+   <!-- Main content -->
+   <section class="content">
+      <form id="updateCourse">
+         <div class="row">
+            <div class="col-md-6">
+               <div class="form-group">
+                  <label>Course title</label>
+                  <input type="text" class="form-control" name="course_name" id="course_name" placeholder="Enter Course Name">
+                  <input type="hidden" class="form-control" name="update_id" id="update_id" placeholder="Enter Course Name">
                </div>
-               <!-- /.container-fluid -->
-            </section>
-            <!-- Main content -->
-            <section class="content">
-              <form action="" method="post" enctype="multipart/form-data">
-               <div class="row">
-                  <div class="col-md-6">
-                     <div class="form-group">
-                        <label>Course title</label>
-                        <input type="text" class="form-control" name="course_name" value="<?php echo $row['course_name'];?>" placeholder="Enter Course Name">
-                     </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Course Fee</label>
-                        <input type="text" class="form-control" name="fee" value="<?php echo $row['fee'];?>" placeholder="Enter Course Fee">
-                        <!-- <select class="form-control" name="type">
+            </div>
+            <div class="col-md-3">
+               <div class="form-group">
+                  <label>Course Fee</label>
+                  <input type="text" class="form-control" name="fee" id="fee" placeholder="Enter Course Fee">
+                  <!-- <select class="form-control" name="type">
                           <option>Select Course Type</option>
-                          <option <?php //if($row['type']=="Online") echo 'selected="selected"'; ?>>Online</option>
-                          <option <?php //if($row['type']=="Offline") echo 'selected="selected"'; ?> >Offline</option>
-                          <option <?php //if($row['type']=="Our Courses") echo 'selected="selected"'; ?> >Our Courses</option>
+                          <option <?php //if($row['type']=="Online") echo 'selected="selected"'; 
+                                    ?>>Online</option>
+                          <option <?php //if($row['type']=="Offline") echo 'selected="selected"'; 
+                                    ?> >Offline</option>
+                          <option <?php //if($row['type']=="Our Courses") echo 'selected="selected"'; 
+                                    ?> >Our Courses</option>
                         </select> -->
-                      </div>
-                     
-                  </div>
-                  <div class="col-md-3">
-                     <div class="form-group">
-                        <label>Course duration</label>
-                        <input type="text" class="form-control" name="duration" value="<?php echo $row['duration'];?>" placeholder="Enter Course Duration">
-                     </div>
-                  </div>
                </div>
-               
-               <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Course Details</label>
-                     <div class="card card-outline card-info">
-                        <div class="card-body pad">
-                           <div class="mb-3">
-                              <textarea class="textarea" placeholder="Enter Course Description" name="feature" 
-                                 style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php echo $row['feature'];?></textarea>
-                           </div>
+
+            </div>
+            <div class="col-md-3">
+               <div class="form-group">
+                  <label>Course duration</label>
+                  <input type="text" class="form-control" name="duration" id="duration" placeholder="Enter Course Duration">
+               </div>
+            </div>
+         </div>
+
+         <div class="row">
+            <div class="col-md-12">
+               <div class="form-group">
+                  <label>Course Details</label>
+                  <div class="card card-outline card-info">
+                     <div class="card-body pad">
+                        <div class="mb-3">
+                           <!-- <input type="text" class="form-control textarea" name="feature" id="feature" placeholder="Enter course description"> -->
+                           <textarea class="textarea" placeholder="Enter Course Description" name="feature" id="feature" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                         </div>
                      </div>
-                   </div>
                   </div>
-                  <!-- /.col-->
                </div>
-               
-               <button type="submit" class="btn btn-default">Save</button>
-             </form>
-               <!-- ./row -->
-            </section>
-            <!-- /.content -->
-         </div><br>
-         <!-- /.content-wrapper -->
-         <?php include 'footer.php'?>
-         
-   </body>
+            </div>
+            <!-- /.col-->
+         </div>
+
+         <input type="submit" class="btn btn-default" value="Save">
+      </form>
+      <!-- ./row -->
+   </section>
+   <!-- /.content -->
+</div><br>
+<!-- /.content-wrapper -->
+<?php include 'include/footer.php' ?>
+<script>
+   // fetch single
+
+   $(document).ready(function() {
+      var params = new window.URLSearchParams(window.location.search);
+      var empid = params.get('course_id');
+
+      $.ajax({
+         url: "api/course/courseSingle.php",
+         type: "POST",
+         data: {
+            id: empid
+         },
+         dataType: "json",
+         success: function(data) {
+            //console.log(data);
+            if (data.status !== false) {
+               $("#update_id").val(data.course_id);
+               $("#course_name").val(data.course_name);
+               $("#fee").val(data.fee);
+               $("#duration").val(data.duration);
+               $("#feature").val(data.feature);
+               console.log(data.feature);
+            }
+
+
+         }
+      });
+   });
+   // update course
+   $('#updateCourse').on('submit', function(e) {
+      e.preventDefault();
+
+      //alert($('#updateCourse').serialize());
+      // console.log($('#updateCourse').serialize());
+      //$('#response').html($('#updateCourse').serialize());
+      $.ajax({
+         url: "api/course/courseUpdate.php",
+         method: "POST",
+         dataType: "JSON",
+         data: new FormData(this),
+         contentType: false,
+         //cache:false,  
+         processData: false,
+         success: function(data) {
+            //console.log(data);
+            //console.log(data.status);
+            if (data.status == true) {
+
+               window.location.href = 'view_course.php';
+               alert(data.message);
+               //$("#courseAlertMessage").append("<div class='alert alert-success alert-dismissible fade in'>" +
+               //"<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" + data.message + "</div>");
+
+            } else if (data.status == false) {
+               console.log(data.message);
+
+            }
+         }
+      });
+
+   });
+</script>
+
+
+
 </html>

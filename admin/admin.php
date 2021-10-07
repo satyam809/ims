@@ -54,10 +54,10 @@ class Admin
         //print_r($sql);die;
         $result = $this->con->query($sql);
         $filename = $result->fetch(PDO::FETCH_ASSOC); //return $filename['images'];die; //print_r($filename);die;
-        $images = "../images/{$filename['images']}";
+        $images = path . "admin/images/{$filename['images']}";
         if (file_exists($images)) {
             //return $images;die;
-            $del_file = unlink("../images/{$filename['images']}");
+            $del_file = unlink(path . "admin/images/{$filename['images']}");
             if ($del_file) {
                 $delete = "DELETE FROM `image_table` WHERE image_id='" . $id . "'";
                 $del_image = $this->con->query($delete);
@@ -73,13 +73,11 @@ class Admin
     public function download_insert($file_name, $file)
     {
 
-        $target_file = "download_file/" . basename($file);
+        $target_file = path . "admin/download_file/" . basename($file);
         $sql = "insert into download_table (file_name,file) values ('$file_name','$file')"; //print_r($sql);
         if ($this->con->query($sql)) {
             if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-                echo '<script language="javascript">';
-                echo 'alert("uploaded Sucessfully");location.href="downloads.php"';
-                echo '</script>';
+                return true;
             }
         }
     }
@@ -98,16 +96,12 @@ class Admin
         $result = $this->con->query($sql);
         //$result=mysqli_query($conn,$sql);
         $filename = $result->fetch(PDO::FETCH_ASSOC); //echo '<pre>',print_r($filename,1),'</pre>';die;
-        if (file_exists("download_file/$filename[file]")) {
-            //$del_file=unlink("download/$filename[file]");
-            if (unlink("download_file/$filename[file]")) {
-                $delete = "DELETE FROM `download_table` WHERE download_id='" . $id . "'";
-                $del_download = $this->con->query($delete);
-                if ($del_download) {
-                    echo '<script language="javascript">';
-                    echo 'alert("Delete Sucessfully");location.href="downloads.php"';
-                    echo '</script>';
-                }
+        $filePath = "C:/xampp/htdocs/myproject/ims/admin/download_file/$filename[file]";
+
+        if (unlink($filePath)) { //return $filePath;die;
+            $delete = "DELETE FROM download_table WHERE download_id='$id'";
+            if ($this->con->query($delete)) {
+                return true;
             }
         }
     }
@@ -130,13 +124,13 @@ class Admin
     {
         if (!empty($file)) {
 
-            $target_file = "../download_file/" . basename($file); //echo $target_file;
+            $target_file = path . "admin/download_file/" . basename($file); //echo $target_file;
             $check = "select * from download_table where download_id='$id'"; //echo $check;
             $result = $this->con->query($check); //print_r($result);die;
             //$result=mysqli_query($conn,$check);
             $filename = $result->fetch(PDO::FETCH_ASSOC);
-            if (file_exists("download_file/$filename[file]")) {
-                if (unlink("download_file/$filename[file]")) {
+            if (file_exists(path . "admin/download_file/$filename[file]")) {
+                if (unlink(path . "admin/download_file/$filename[file]")) {
                     $sql = "update download_table set file_name='$file_name',file='$file' where download_id='$id'"; //echo $sql;die;
                     if ($this->con->query($sql)) {
                         if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
@@ -158,6 +152,30 @@ class Admin
             }
         }
     }
+    public function contact_insert($fname, $lname, $phone, $email)
+    {
+        $sql = "insert into 
+                contact_table(fname,lname,phone,email)
+                values('$fname','$lname','$phone','$email')"; //print_r($sql);die;
+        //echo '<pre>',print_r($result,1),'</pre>';
+        $result = $this->con->query($sql);
+        return $result;
+    }
+    /*public function contact_insert($fname,$lname,$phone,$email){
+        $to = "satyamshivam570@gmail.com"; 
+            $from = $email;
+            $name = $name;
+            $contactno = $phone;
+            
+            $message = $fname."whose Contact No:".$contactno."whose Email-id:".$email. "\n\n" ."";
+
+
+            $headers = "From:" . $from;
+            $headers2 = "From:" . $to;
+            mail($to,$subject,$message,$headers);
+            return true;
+                
+    }*/
     public function contact_fetch()
     {
 
@@ -171,7 +189,8 @@ class Admin
         $sql = "DELETE FROM contact_table WHERE id in ($id)";
         if ($this->con->query($sql)) {
             /*if(mysqli_query($obj->con, $sql)){*/
-            echo $id;
+            //echo $id;
+            return true;
         }
     }
     public function contact_export()
@@ -194,7 +213,6 @@ class Admin
         header("Content-Disposition: attachment; filename=contact.xls");
         header("Pragma: no-cache");
         header("Expires: 0");
-
         echo ucwords($columnHeader) . "\n" . $setData . "\n";
     }
     public function course_insert($course_name, $fee, $duration, $feature)
@@ -202,10 +220,7 @@ class Admin
 
         $sql = "insert into course_table (course_name,fee,duration,feature) values ('$course_name','$fee','$duration','$feature')"; //print_r($sql);die;
         if ($this->con->query($sql)) {
-
-            echo '<script language="javascript">';
-            echo 'alert("Course Added Successfully")';
-            echo '</script>';
+            return true; //
         }
     }
     public function course_fetch()
@@ -216,7 +231,7 @@ class Admin
         //print_r($result->rowCount());die;
         return $result;
     }
-    public function course_detail($detail_ids)
+    public function course_single($detail_ids)
     {
         $query = "SELECT * FROM course_table where course_id='$detail_ids'";
         $result = $this->con->query($query); //print_r($result);die;
@@ -234,18 +249,14 @@ class Admin
     {
         $sql = "update course_table set course_name='$course_name',fee='$fee',duration='$duration',feature='$feature' where course_id='$id'";
         if ($this->con->query($sql)) {
-            echo '<script language="javascript">';
-            echo 'alert("update Sucessfully");location.href="view_course.php"';
-            echo '</script>';
+            return true;
         }
     }
     public function course_delete($id)
     {
         $sql = "DELETE FROM course_table WHERE course_id='$id'";
         if ($this->con->query($sql)) {
-            echo '<script language="javascript">';
-            echo 'alert("Delete Sucessfully");location.href="view_course.php"';
-            echo '</script>';
+            return true;
         }
     }
 }

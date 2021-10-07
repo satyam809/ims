@@ -1,6 +1,6 @@
         <!-- Start Header -->
-        <?php include 'header.php';?>
-        <!-- End Header --> 
+        <?php include 'include/header.php'; ?>
+        <!-- End Header -->
 
         <!-- Start Banner -->
         <!-- <div class="inner-banner blog">
@@ -15,29 +15,17 @@
                 </div>
             </div>
         </div> -->
-        <!-- End Banner --> 
+        <!-- End Banner -->
 
         <!-- Start Campus Tour -->
-        <section class="campus-tour padding-lg container"> 
+        <section class="campus-tour padding-lg container">
 
             <!-- gallery filter -->
-            
+
             <!-- end filter -->
 
-            <ul class="gallery clearfix isotopeContainer">
-                <?php 
-                    $res=$obj->image_fetch();
-                    
-                    while($row=$res->fetch(PDO::FETCH_ASSOC)){
-                    ?> 
-                <li class="isotopeSelector contest">
-                    <div class="overlay">
-                        
-                        <a class="galleryItem" href="admin/images/<?php echo $row['images'];?>"><span class="icon-enlarge-icon"></span></a>  
-                    </div>
-                    <figure><img src="admin/images/<?php echo $row['images'];?>" class="img-responsive" alt=""></figure>
-                </li>
-                <?php } ?>
+            <ul class="gallery clearfix isotopeContainer" id="galleryAllImages">
+
             </ul>
             <div class="text-center">
                 <ul class="pagination blue">
@@ -50,8 +38,36 @@
                 </ul>
             </div>
         </section>
-        <!-- End Campus Tour --> 
+        <!-- End Campus Tour -->
 
         <!-- Start Footer -->
-        <?php include 'footer.php';?>
-        <!-- End Footer --> 
+        <?php include 'include/footer.php'; ?>
+        <!-- End Footer -->
+        <script type="text/javascript">
+            // fetch gallery
+            function loadAllGalleryImages() {
+                $.ajax({
+                    url: "admin/api/gallery/galleryImagesFetch.php",
+                    dataType: "json",
+                    success: function(data) {
+                        //console.log(data);
+                        if (data.status == false) {
+                            $("#galleryAllImages").append("<b>" + data.message + "</b>");
+                        } else {
+                            var i = 1;
+                            $.each(data, function(key, value) {
+                                $("#galleryAllImages").append(` <li class="isotopeSelector contest">
+                        <div class="overlay">
+
+                            <a class="galleryItem" href="admin/images/${value.images}"><span class="icon-enlarge-icon"></span></a>
+                        </div>
+                        <figure><img src="admin/images/${value.images}" class="img-responsive" alt=""></figure>
+                    </li>`);
+                            });
+                            i++;
+                        }
+                    },
+                });
+            }
+            loadAllGalleryImages();
+        </script>

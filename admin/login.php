@@ -1,22 +1,21 @@
-<?php 
+<?php
 
 require_once('admin.php');
 
-if(isset($_POST['login'])){
-  $username=$_POST['username'];
-  $password=md5($_POST['password']);
-  $obj->admin_login($username,$password);
-  
+if (isset($_POST['login'])) {
+  $username = $_POST['username'];
+  $password = md5($_POST['password']);
+  $obj->admin_login($username, $password);
 }
 ?>
 <!DOCTYPE html>
 <html>
-    
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>IMS</title>
-  <link rel="shortcut icon" href="dist/img/logo.jpg" type="image/x-icon"/>
+  <title>Tech Classes</title>
+  <link rel="shortcut icon" href="dist/img/logo.jpg" type="image/x-icon" />
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -26,10 +25,10 @@ if(isset($_POST['login'])){
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-<style type="text/css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+  <style type="text/css">
     /* Coded with love by Mutiullah Samim */
     body,
     html {
@@ -38,6 +37,7 @@ if(isset($_POST['login'])){
       height: 100%;
       background: #60a3bc !important;
     }
+
     .user_card {
       height: 400px;
       width: 350px;
@@ -55,6 +55,7 @@ if(isset($_POST['login'])){
       border-radius: 5px;
 
     }
+
     .brand_logo_container {
       position: absolute;
       height: 170px;
@@ -65,44 +66,53 @@ if(isset($_POST['login'])){
       padding: 10px;
       text-align: center;
     }
+
     .brand_logo {
       height: 150px;
       width: 150px;
       border-radius: 50%;
       border: 2px solid white;
     }
+
     .form_container {
       margin-top: 100px;
     }
+
     .login_btn {
       width: 100%;
       background: #c0392b !important;
       color: white !important;
     }
+
     .login_btn:focus {
       box-shadow: none !important;
       outline: 0px !important;
     }
+
     .login_container {
       padding: 0 2rem;
     }
+
     .input-group-text {
       background: #c0392b !important;
       color: white !important;
       border: 0 !important;
       border-radius: 0.25rem 0 0 0.25rem !important;
     }
+
     .input_user,
     .input_pass:focus {
       box-shadow: none !important;
       outline: 0px !important;
     }
+
     .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
       background-color: #c0392b !important;
     }
-</style>
+  </style>
 </head>
 <!--Coded with love by Mutiullah Samim-->
+
 <body>
   <div class="container h-100">
     <div class="d-flex justify-content-center h-100">
@@ -132,16 +142,16 @@ if(isset($_POST['login'])){
                 <label class="custom-control-label" for="customControlInline">Remember me</label>
               </div>
             </div>
-              <div class="d-flex justify-content-center mt-3 login_container">
-          <button type="submit" name="login" class="btn login_btn">Login</button>
-           </div>
+            <div class="d-flex justify-content-center mt-3 login_container">
+              <button type="submit" name="login" class="btn login_btn">Login</button>
+            </div>
           </form>
         </div>
-    
-        
+
+
       </div>
     </div>
   </div>
 </body>
-</html>
 
+</html>
